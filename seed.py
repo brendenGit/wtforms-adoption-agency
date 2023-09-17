@@ -1,18 +1,32 @@
 from models import Pet, db
 from app import app
 
-
 db.drop_all()
 db.create_all()
 
-User.query.delete()
+Pet.query.delete()
 
-brenden = User(first_name='Brenden', last_name='Arias')
-sage = User(first_name='Sage', last_name='Arias-Hart', profile_picture='https://cf.ltkcdn.net/dogs/puppies/images/orig/326566-1600x1066-guide-great-pyrenees-puppies.jpg')
-meghan = User(first_name='Meghan', last_name='Hart')
+Izzy = Pet(name='Izzy',
+           species='Cat',
+           photo_url='https://shorturl.at/sCMX1',
+           age=15,
+           notes='A very cute orange cat. RIP.',
+           available=False)
 
-db.session.add(brenden)
-db.session.add(sage)
-db.session.add(meghan)
+Sage = Pet(name='Sage',
+           species='Dog',
+           photo_url='https://shorturl.at/cqDF6',
+           age=3,
+           notes='A very cute, large, white, fluffy dog. V sleepy too.')
+
+Kinnick = Pet(name='Kinnick',
+           species='Dog',
+           photo_url='https://shorturl.at/dlN05',
+           age=7,
+           notes='A very wild and energetic dog. A bit crazy too.')
+
+db.session.add(Izzy)
+db.session.add(Sage)
+db.session.add(Kinnick)
 
 db.session.commit()

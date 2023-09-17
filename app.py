@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, Pet
+from forms import AddPetForm
 
 app = Flask(__name__)
 
@@ -19,5 +20,31 @@ app.app_context().push()
 def home():
     """home page - shows all pets"""
 
-    users = User.query.all()
-    return render_template("user_list.html", users=users)
+    pets = Pet.query.all()
+    return render_template("home.html", pets=pets)
+
+@app.route("/pets/add", methods=['GET','POST'])
+def add_pet():
+    """a route to add a pet to the adoption agency"""
+
+    form = AddPetForm()
+
+    if form.validate_on_submit():
+        name = form.name.data
+        species = form.species.data
+        if form.photo_url.data:
+            photo_url = form.photo_url.data
+        else:
+            photo_url = 'https://shorturl.at/cfkq7'
+        age = form.age.data
+        notes = form.notes.data
+        pet = Pet(name=name, species=species, photo_url=photo_url, 
+                  age=age, notes=notes)
+        db.session.add(pet)
+        db.session.commit()
+        return redirect("/")
+    
+    else:
+        return render_template("add_pet.html", form=form)
+    
+@app.route("/pets/view/")
