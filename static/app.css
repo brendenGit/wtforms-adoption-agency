@@ -1,6 +1,51 @@
 .pet_image {
     max-width: 100%;
     max-height: 300px;
-    width: auto; 
-    height: auto; 
+    width: auto;
+    height: auto;
+    border-bottom: solid black 1px;
+    border-top: solid black 1px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(86, 82, 82);
+}
+
+.pet_card {
+    display: flex;
+    border: solid 1px black;
+    border-radius: 10px;
+    align-content: center;
+    flex-direction: column;
+    width: 25%;
+    overflow: hidden;
+    margin: 2%;
+}
+
+.all_pets {
+    display: flex;
+    flex-direction: row;
+}
+
+#edit_pet {
+    display: flex;
+    flex-direction: column;
+}
+
+.expanded {
+    width: 45%;
+    margin: auto;
+}
+
+.expanded p, h1, button {
+    margin: 5px;
+}
+
+#edit_form_container {
+    transition: display 10s ease-in-out;
+}
+
+#edit_pet * {
+    margin: 5px;
 }

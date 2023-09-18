@@ -2,16 +2,18 @@
 
 {% block content %}
 <h1>Pets</h1>
-<div>
+<div id="all_pets">
     {% for pet in pets %}
-    <div class="pet_card">
-        <img src="{{ pet.photo_url}}" alt="a photo of a {{pet.species}}" class="pet_image">
-        {% if pet.available %}
-        <p>{{ pet.name }} <b>is available</b></p>
-        {% else %}
-        <p>{{ pet.name }} <b>is not available</b></p>
-        {% endif %}
-    </div>
+    <a href="/pets/view/{{ pet.id }}">
+        <div class="pet_card">
+            <img src="{{ pet.photo_url}}" alt="a photo of a {{pet.species}}" class="pet_image">
+            {% if pet.available %}
+            <p>{{ pet.name }} <b>is available</b></p>
+            {% else %}
+            <p>{{ pet.name }} <b>is not available</b></p>
+            {% endif %}
+        </div>
+    </a>
     {% endfor %}
     <a href="/pets/add">Add Pet</a>
 </div>
